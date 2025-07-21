@@ -121,9 +121,17 @@ document.getElementById('create-zip-btn').addEventListener('click', async functi
     addedNames.add(file.name);
   }
   const blob = await zip.generateAsync({ type: 'blob' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `web_memo_import_${nowStr.replace(/[:.]/g, '-')}.zip`;
-  a.click();
-  document.getElementById('result').textContent = 'zipファイルを作成しました！';
+  const url = URL.createObjectURL(blob);
+  const resultDiv = document.getElementById('result');
+  resultDiv.innerHTML = '';
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `web_memo_import_${nowStr.replace(/[:.]/g, '-')}.zip`;
+  link.textContent = 'zipファイルをダウンロード・共有';
+  link.style.display = 'inline-block';
+  link.style.margin = '1em 0';
+  link.style.fontSize = '1.1em';
+  link.style.textDecoration = 'underline';
+  link.style.color = '#111';
+  resultDiv.appendChild(link);
 }); 

@@ -123,7 +123,7 @@ document.getElementById('create-zip-btn').addEventListener('click', async functi
   const blob = await zip.generateAsync({ type: 'blob' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `memo_import_${nowStr.replace(/[:.]/g, '-')}.zip`;
+  a.download = `web_memo_import_${nowStr.replace(/[:.]/g, '-')}.zip`;
   a.click();
   document.getElementById('result').textContent = 'zipファイルを作成しました！';
 }); 

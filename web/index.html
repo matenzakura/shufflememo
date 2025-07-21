@@ -8,12 +8,26 @@
 </head>
 <body>
   <h1>シャッフルメモ　インポート</h1>
-  <form id="memo-form">
-    <div id="memo-list"></div>
-    <button type="button" id="add-memo-btn">メモを追加</button>
-    <button type="button" id="create-zip-btn">エクスポート</button>
-  </form>
-  <div id="result"></div>
+  <nav class="tab-nav">
+    <button type="button" class="tab-btn active" data-tab="free">自由入力</button>
+    <button type="button" class="tab-btn" data-tab="bulk">画像一括</button>
+  </nav>
+  <div id="tab-free" class="tab-section active">
+    <form id="memo-form">
+      <div id="memo-list"></div>
+      <button type="button" id="add-memo-btn">メモを追加</button>
+      <button type="button" id="create-zip-btn">エクスポート</button>
+    </form>
+    <div id="result"></div>
+  </div>
+  <div id="tab-bulk" class="tab-section">
+    <form id="bulk-form">
+      <input type="file" id="bulk-image-input" accept="image/*" multiple>
+      <div id="bulk-thumbnails"></div>
+      <button type="button" id="bulk-create-zip-btn">エクスポート</button>
+    </form>
+    <div id="bulk-result"></div>
+  </div>
   <script src="main.js"></script>
 </body>
 </html> 

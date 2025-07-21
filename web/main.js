@@ -134,4 +134,89 @@ document.getElementById('create-zip-btn').addEventListener('click', async functi
   link.style.textDecoration = 'underline';
   link.style.color = '#111';
   resultDiv.appendChild(link);
+});
+
+// タブ切り替え
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabSections = document.querySelectorAll('.tab-section');
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabSections.forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// 画像一括タブの処理
+const bulkImageInput = document.getElementById('bulk-image-input');
+const bulkThumbnails = document.getElementById('bulk-thumbnails');
+bulkImageInput.addEventListener('change', function(e) {
+  bulkThumbnails.innerHTML = '';
+  Array.from(bulkImageInput.files).forEach(file => {
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const img = document.createElement('img');
+      img.src = ev.target.result;
+      img.alt = file.name;
+      bulkThumbnails.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+});
+document.getElementById('bulk-create-zip-btn').addEventListener('click', async function() {
+  const files = Array.from(bulkImageInput.files);
+  if (files.length === 0) {
+    alert('画像を選択してください');
+    return;
+  }
+  const now = new Date();
+  const nowStr = now.toISOString();
+  const memos = files.map(file => ({
+    id: uuidv4(),
+    title: '',
+    content: '',
+    tagIds: [],
+    imagePaths: [`images/${file.name}`],
+    createdAt: nowStr,
+    updatedAt: nowStr,
+    sortOrder: 0,
+    extraNote: '',
+    categoryId: 'import'
+  }));
+  const category = [{
+    id: 'import',
+    name: 'インポート',
+    colorHex: null,
+    sortOrder: 0,
+    lastEditedAt: nowStr,
+    showDateInList: false
+  }];
+  const tags = [];
+  const version = { dataVersion: 1 };
+  const zip = new JSZip();
+  zip.file('memo_data.json', JSON.stringify(memos, null, 2));
+  zip.file('category_data.json', JSON.stringify(category, null, 2));
+  zip.file('tag_data.json', JSON.stringify(tags, null, 2));
+  zip.file('version.json', JSON.stringify(version, null, 2));
+  const imagesFolder = zip.folder('images');
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const arrayBuffer = await file.arrayBuffer();
+    imagesFolder.file(file.name, arrayBuffer);
+  }
+  const blob = await zip.generateAsync({ type: 'blob' });
+  const url = URL.createObjectURL(blob);
+  const resultDiv = document.getElementById('bulk-result');
+  resultDiv.innerHTML = '';
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `web_memo_import_${nowStr.replace(/[:.]/g, '-')}.zip`;
+  link.textContent = 'zipファイルをダウンロード・共有';
+  link.style.display = 'inline-block';
+  link.style.margin = '1em 0';
+  link.style.fontSize = '1.1em';
+  link.style.textDecoration = 'underline';
+  link.style.color = '#111';
+  resultDiv.appendChild(link);
 }); 

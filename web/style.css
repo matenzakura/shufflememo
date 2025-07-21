@@ -152,4 +152,48 @@ input[type="file"] {
 }
 .add-image-btn {
   display: none;
+}
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5em;
+  gap: 0.5em;
+}
+.tab-btn {
+  background: #fff;
+  color: #111;
+  border: 1.5px solid #111;
+  border-radius: 8px 8px 0 0;
+  padding: 0.5em 2em;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  border-bottom: none;
+}
+.tab-btn.active {
+  background: #111;
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+.tab-section {
+  display: none;
+}
+.tab-section.active {
+  display: block;
+}
+#bulk-thumbnails {
+  margin: 1em 0 1.5em 0;
+}
+#bulk-thumbnails img {
+  border-radius: 8px;
+  border: 1px solid #222;
+  background: #fff;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  max-width: 100px;
+  max-height: 100px;
+  box-shadow: 0 1px 4px #0001;
 } 

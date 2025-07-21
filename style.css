@@ -1,0 +1,155 @@
+body {
+  font-family: 'Source Han Sans JP', 'Segoe UI', 'Meiryo', sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+}
+h1 {
+  font-size: 1.15em;
+  margin: 2em 0 1.2em 0;
+  text-align: center;
+  color: #111;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+}
+form {
+  background: #fff;
+  padding: 2em 1.2em 1.5em 1.2em;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px #0001;
+  max-width: 520px;
+  margin: 0 auto;
+  letter-spacing: 0.1em;
+}
+#memo-list {
+  margin-bottom: 1.5em;
+}
+.memo-block {
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+  padding: 1.2em 0 1em 0;
+  box-shadow: none;
+  position: relative;
+  letter-spacing: 0.04em;
+}
+.memo-block:not(:last-child)::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: #e0e0e0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -12px;
+}
+.memo-block:not(:last-child) {
+  margin-bottom: 24px;
+}
+.memo-block label {
+  font-weight: normal;
+  display: block;
+  margin-bottom: 0.5em;
+  color: #111;
+  letter-spacing: 0.04em;
+  font-size: 1em;
+}
+.memo-block textarea {
+  width: 100%;
+  min-height: 80px;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  border: 1.2px solid #222;
+  border-radius: 8px;
+  background: #fff;
+  color: #111;
+  padding: 0.5em 0.8em;
+  box-sizing: border-box;
+  transition: border 0.2s;
+  box-shadow: none;
+  font-family: inherit;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+}
+.memo-block textarea:focus {
+  outline: none;
+  border: 1.5px solid #111;
+}
+.memo-block .thumbnails {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.memo-block .thumbnails img {
+  border-radius: 8px;
+  border: 1px solid #222;
+  background: #fff;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  max-width: 100px;
+  max-height: 100px;
+  box-shadow: 0 1px 4px #0001;
+}
+.remove-memo-link {
+  color: #111;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.97em;
+  font-weight: normal;
+  margin-top: 0.7em;
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.2s;
+  letter-spacing: 0.04em;
+}
+.remove-memo-link:hover {
+  color: #555;
+}
+.remove-memo-btn { display: none; }
+#add-memo-btn, #create-zip-btn {
+  margin-bottom: 1em;
+  margin-right: 0.7em;
+  padding: 0.4em 1.3em;
+  font-size: 1em;
+  background: #fff;
+  color: #111;
+  border: 1.5px solid #111;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: normal;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, color 0.2s;
+}
+#add-memo-btn:hover, #create-zip-btn:hover {
+  background: #111;
+  color: #fff;
+}
+#result {
+  margin-top: 2em;
+  color: #111;
+  font-weight: normal;
+  text-align: center;
+  font-size: 1em;
+  letter-spacing: 0.04em;
+}
+input[type="file"] {
+  color: #111;
+  background: #fff;
+  border: none;
+  font-size: 1em;
+  font-family: inherit;
+  margin: 0.2em 0 0.5em 0;
+  letter-spacing: 0.04em;
+  font-weight: normal;
+}
+.memo-content-spacer {
+  height: 16px;
+}
+.add-image-btn {
+  display: none;
+} 
